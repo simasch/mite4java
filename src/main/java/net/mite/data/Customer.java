@@ -1,21 +1,17 @@
 package net.mite.data;
 
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-
-@XmlRootElement(name="customer")
+@XmlRootElement(name = "customer")
 public class Customer {
 
 	String name;
-	
 
 	String note;
-	
 
 	boolean archived;
-	
+
 	Integer hourlyRate;
 
 	public String getName() {
@@ -41,7 +37,8 @@ public class Customer {
 	public void setArchived(boolean archived) {
 		this.archived = archived;
 	}
-	@XmlElement(name="hourly-rate")
+
+	@XmlElement(name = "hourly-rate")
 	public Integer getHourlyRate() {
 		return hourlyRate;
 	}
@@ -49,6 +46,5 @@ public class Customer {
 	public void setHourlyRate(Integer hourlyRate) {
 		this.hourlyRate = hourlyRate;
 	}
-	
-	
+
 }

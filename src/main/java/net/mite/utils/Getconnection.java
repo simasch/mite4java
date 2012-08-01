@@ -18,83 +18,77 @@ import javax.net.ssl.X509TrustManager;
  * and open the template in the editor.
  */
 /**
- *
+ * 
  * @author Masud
  */
 public class Getconnection {
 
-    public String domainUrl = null;
-    public String isHttps = null;
+	public String domainUrl = null;
+	public String isHttps = null;
 
-    public Getconnection(String domainName, String isHttps) {
-        
-        this.isHttps = isHttps;
+	public Getconnection(String domainName, String isHttps) {
 
-        if (isHttps.equalsIgnoreCase("true")) {
-            this.domainUrl = "https://" + domainName;
-        } else {
-            this.domainUrl = "http://" + domainName;
-        }
-        
-        System.out.println("Url Address : "+domainUrl);
-    }
+		this.isHttps = isHttps;
 
-    public String getDomainUrl() {
-        return domainUrl;
-    }
+		if (isHttps.equalsIgnoreCase("true")) {
+			this.domainUrl = "https://" + domainName;
+		} else {
+			this.domainUrl = "http://" + domainName;
+		}
 
-    public void getCon() {
+		System.out.println("Url Address : " + domainUrl);
+	}
 
-        try {
-            URL url = new URL(domainUrl);
+	public String getDomainUrl() {
+		return domainUrl;
+	}
 
-            if (isHttps.equalsIgnoreCase("true")) {
-                //** FOR SSL connection
-                SSLContext ctx = SSLContext.getInstance("TLS");
-                ctx.init(new KeyManager[0], new TrustManager[]{new DefaultTrustManager()}, new SecureRandom());
-                SSLContext.setDefault(ctx);
+	public void getCon() {
 
-                HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
+		try {
+			URL url = new URL(domainUrl);
 
+			if (isHttps.equalsIgnoreCase("true")) {
+				// ** FOR SSL connection
+				SSLContext ctx = SSLContext.getInstance("TLS");
+				ctx.init(new KeyManager[0], new TrustManager[] { new DefaultTrustManager() }, new SecureRandom());
+				SSLContext.setDefault(ctx);
 
+				HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
 
-                conn.setHostnameVerifier(new HostnameVerifier() {
+				conn.setHostnameVerifier(new HostnameVerifier() {
 
-                    public boolean verify(String arg0, SSLSession arg1) {
-                        return true;
-                    }
-                });
+					public boolean verify(String arg0, SSLSession arg1) {
+						return true;
+					}
+				});
 
-                System.out.println(conn.getResponseCode());
+				System.out.println(conn.getResponseCode());
 
-                conn.disconnect();
-            } else {
+				conn.disconnect();
+			} else {
 
-                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+				HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
-                System.out.println(conn.getResponseCode());
+				System.out.println(conn.getResponseCode());
 
-                conn.disconnect();
-            }
+				conn.disconnect();
+			}
 
+		} catch (Exception ex) {
+		}
+	}
 
-        } catch (Exception ex) {
-        }
-    }
+	private static class DefaultTrustManager implements X509TrustManager {
 
-    private static class DefaultTrustManager implements X509TrustManager {
+		public void checkClientTrusted(X509Certificate[] arg0, String arg1) throws CertificateException {
+		}
 
-       
-        public void checkClientTrusted(X509Certificate[] arg0, String arg1) throws CertificateException {
-        }
+		public void checkServerTrusted(X509Certificate[] arg0, String arg1) throws CertificateException {
+		}
 
-    
-        public void checkServerTrusted(X509Certificate[] arg0, String arg1) throws CertificateException {
-        }
-
-       
-        public X509Certificate[] getAcceptedIssuers() {
-            return null;
-        }
-    }
+		public X509Certificate[] getAcceptedIssuers() {
+			return null;
+		}
+	}
 }

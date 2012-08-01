@@ -3,19 +3,19 @@ package net.mite.data;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name="project")
+@XmlRootElement(name = "project")
 public class Project {
 
 	String name;
-	
+
 	String note;
-	
+
 	Integer budget;
-	
+
 	boolean archived;
-	
+
 	Integer customerId;
-	
+
 	Integer hourlyRate;
 
 	public String getName() {
@@ -49,7 +49,8 @@ public class Project {
 	public void setArchived(boolean archived) {
 		this.archived = archived;
 	}
-	@XmlElement(name="customer-id")
+
+	@XmlElement(name = "customer-id")
 	public Integer getCustomerId() {
 		return customerId;
 	}
@@ -57,7 +58,8 @@ public class Project {
 	public void setCustomerId(Integer customerId) {
 		this.customerId = customerId;
 	}
-	@XmlElement(name="hourly-rate")
+
+	@XmlElement(name = "hourly-rate")
 	public Integer getHourlyRate() {
 		return hourlyRate;
 	}
@@ -65,8 +67,5 @@ public class Project {
 	public void setHourlyRate(Integer hourlyRate) {
 		this.hourlyRate = hourlyRate;
 	}
-	
-	
-	
-	
+
 }

@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>ch.simas</groupId>
+	<groupId>ch.simas.mit4java</groupId>
 	<artifactId>mite4java</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
@@ -14,6 +14,13 @@
 		<name>simas GmbH</name>
 		<url>http://www.simas.ch</url>
 	</organization>
+	
+	<developers>
+		<developer>
+			<id>jewelsub</id>
+			<name>Mohammad Rahaman</name>
+		</developer>
+	</developers>
 
 	<properties>
 		<org.springframework.version>3.1.2.RELEASE</org.springframework.version>

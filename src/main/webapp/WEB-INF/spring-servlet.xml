@@ -33,9 +33,6 @@
 		<property name="defaultEncoding" value="UTF-8" />
 	</bean>
 
-
 	<tx:annotation-driven />
-
-
 
 </beans>

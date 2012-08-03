@@ -1,4 +1,4 @@
-package net.mite.utils;
+package ch.simas.mite4java.utils;
 
 import java.net.HttpURLConnection;
 import java.net.URL;

@@ -1,4 +1,4 @@
-package net.mite.controller;
+package ch.simas.mite4java.controller;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -9,11 +9,6 @@ import java.io.StringWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import net.mite.utils.Getconnection;
-import net.mite.data.Customer;
-import net.mite.data.Project;
-import net.mite.data.Service;
-import net.mite.data.TimeEntryData;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
@@ -25,6 +20,13 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import ch.simas.mite4java.data.Customer;
+import ch.simas.mite4java.data.Project;
+import ch.simas.mite4java.data.Service;
+import ch.simas.mite4java.data.TimeEntryData;
+import ch.simas.mite4java.utils.Getconnection;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

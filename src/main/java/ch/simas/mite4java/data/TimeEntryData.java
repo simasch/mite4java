@@ -1,4 +1,4 @@
-package net.mite.data;
+package ch.simas.mite4java.data;
 
 import java.util.ArrayList;
 

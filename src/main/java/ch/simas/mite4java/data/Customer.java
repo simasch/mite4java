@@ -1,20 +1,18 @@
-package net.mite.data;
+package ch.simas.mite4java.data;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "service")
-public class Service {
+@XmlRootElement(name = "customer")
+public class Customer {
 
 	String name;
 
 	String note;
 
-	boolean billable;
+	boolean archived;
 
 	Integer hourlyRate;
-
-	boolean archived;
 
 	public String getName() {
 		return name;
@@ -32,12 +30,12 @@ public class Service {
 		this.note = note;
 	}
 
-	public boolean isBillable() {
-		return billable;
+	public boolean isArchived() {
+		return archived;
 	}
 
-	public void setBillable(boolean billable) {
-		this.billable = billable;
+	public void setArchived(boolean archived) {
+		this.archived = archived;
 	}
 
 	@XmlElement(name = "hourly-rate")
@@ -47,14 +45,6 @@ public class Service {
 
 	public void setHourlyRate(Integer hourlyRate) {
 		this.hourlyRate = hourlyRate;
-	}
-
-	public boolean isArchived() {
-		return archived;
-	}
-
-	public void setArchived(boolean archived) {
-		this.archived = archived;
 	}
 
 }

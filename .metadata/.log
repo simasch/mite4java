@@ -1,0 +1,27 @@
+!SESSION 2012-08-06 09:59:09.242 -----------------------------------------------
+eclipse.buildId=M20120208-0800
+java.version=1.6.0_33
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=de_CH
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.ui 2 0 2012-08-06 09:59:25.003
+!MESSAGE Warnings while parsing the object contributions from the 'org.eclipse.ui.popupMenus' extension point
+!SUBENTRY 1 org.eclipse.ui 2 0 2012-08-06 09:59:25.003
+!MESSAGE invalid keybinding: Cannot bind to an incomplete key sequence: plug-in='com.cloudbees.eclipse.dev.ui', id='AUTOGEN:::com.cloudbees.eclipse.dev.ui.refreshJenkins/com.cloudbees.eclipse.dev.ui.action.reload'
+!SUBENTRY 1 org.eclipse.ui 2 0 2012-08-06 09:59:25.003
+!MESSAGE invalid keybinding: Cannot bind to an incomplete key sequence: plug-in='com.cloudbees.eclipse.run.ui', id='AUTOGEN:::com.cloudbees.eclipse.run.ui.deploy/com.cloudbees.eclipse.run.ui.action.deploy'
+!SUBENTRY 1 org.eclipse.ui 2 0 2012-08-06 09:59:25.003
+!MESSAGE invalid keybinding: Cannot bind to an incomplete key sequence: plug-in='com.cloudbees.eclipse.run.ui', id='AUTOGEN:::com.cloudbees.eclipse.run.ui.reloadRunAtCloudApps/com.cloudbees.eclipse.run.ui.action.reloadapps'
+!SUBENTRY 1 org.eclipse.ui 2 0 2012-08-06 09:59:25.003
+!MESSAGE invalid keybinding: Cannot bind to an incomplete key sequence: plug-in='com.cloudbees.eclipse.run.ui', id='AUTOGEN:::com.cloudbees.eclipse.run.ui.delete/com.cloudbees.eclipse.run.ui.action.delete'
+!SUBENTRY 1 org.eclipse.ui 2 0 2012-08-06 09:59:25.003
+!MESSAGE invalid keybinding: Cannot bind to an incomplete key sequence: plug-in='com.cloudbees.eclipse.run.ui', id='AUTOGEN:::com.cloudbees.eclipse.run.ui.configure/com.cloudbees.eclipse.run.ui.action.configure'
+!SUBENTRY 1 org.eclipse.ui 2 0 2012-08-06 09:59:25.003
+!MESSAGE invalid keybinding: Cannot bind to an incomplete key sequence: plug-in='com.cloudbees.eclipse.run.ui', id='AUTOGEN:::com.cloudbees.eclipse.run.ui.stop/com.cloudbees.eclipse.run.ui.deploy.cloud'
+!SUBENTRY 1 org.eclipse.ui 2 0 2012-08-06 09:59:25.003
+!MESSAGE invalid keybinding: Cannot bind to an incomplete key sequence: plug-in='com.cloudbees.eclipse.run.ui', id='AUTOGEN:::com.cloudbees.eclipse.run.ui.start/com.cloudbees.eclipse.run.ui.deploy.cloud'
+
+!ENTRY org.eclipse.ui 4 4 2012-08-06 09:59:46.820
+!MESSAGE Referenced part does not exist yet: org.eclipse.ui.views.TaskList.

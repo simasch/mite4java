@@ -17,10 +17,13 @@ http://localhost:8080/mite4java/postprojects.html?subdomain=jewelsub&apikey=7da6
 
 Export Selected Time Entry to Excel file and download :
 ============================================
-This url is for field selection page where user can select specifiq fields from Time Entry. Then press export button 
+First user will connect to Mite by this page. When user press connect button it fowards to report page
+
+http://localhost:8080/mite4java/getreport.html
+
+In the Report page user can select specifiq fields from Time Entry. Then press export button 
 to download xlsx Report. In this page user need to enter subdomain name amd Mite api key to generate report.
 
-http://localhost:8080/mite4java/getreportentrytxls.html
 
 Export Time Entry to Excel file and download :
 ============================================

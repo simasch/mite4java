@@ -1,6 +1,27 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%
+
+String subDomain="";
+
+    try{
+	
+	    subDomain=request.getParameter("subDomainName");
+	
+	}catch(Exception e){}
+
+
+String miteapikey="";
+
+    try{
+	
+	    miteapikey=request.getParameter("miteApiKey");
+	
+	}catch(Exception e){}
+
+%>
+
 <html>
 <head>
 	<title>Export to XLSX, Admin Panel</title>
@@ -77,11 +98,11 @@
 	<table>
 	<tr>
 		<td><form:label path="subDomainName"><spring:message code="label.subdomain"/></form:label></td>
-		<td><form:input name="subDomainName" path="subDomainName" /></td> 
+		<td><form:input name="subDomainName" path="subDomainName" value="<%=subDomain %>" readonly="true"/></td> 
 	</tr>
 	<tr>
 		<td><form:label path="miteApiKey"><spring:message code="label.miteapikey"/></form:label></td>
-		<td><form:input name="miteApiKey" path="miteApiKey" /></td>
+		<td><form:input name="miteApiKey" path="miteApiKey" value="<%=miteapikey %>" readonly="true"/></td>
 	</tr>
     </table>	
 

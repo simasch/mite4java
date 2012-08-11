@@ -22,9 +22,7 @@ import ch.simas.mite4java.utils.Getconnection;
 
 public class XlsxExpoter {
 
-	public void exportTimeEntryData(String subDomain,String apiKey,String selectedFields,OutputStream out)
-	{
-		
+	public void exportTimeEntryData(String subDomain, String apiKey, String selectedFields, OutputStream out) {
 
 		String TARGET_HTTPS_SERVER = subDomain + ".mite.yo.lk";
 		String TARGET_URL = "https://" + subDomain + ".mite.yo.lk/time_entries.xml?api_key=" + apiKey;
@@ -42,7 +40,7 @@ public class XlsxExpoter {
 			int rc = connection.getResponseCode();
 			if (rc == 200) {
 				BufferedReader br = new BufferedReader(new java.io.InputStreamReader(connection.getInputStream()));
-				
+
 				JAXBContext jaxbContext = JAXBContext.newInstance(TimeEntryData.class);
 
 				Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
@@ -51,7 +49,12 @@ public class XlsxExpoter {
 				System.out.println(timeEntryListData.getTimeEntryList().get(0).getProjectName());
 
 				String delims = ";";
-				String[] tokens = selectedFields.split(delims);
+				String[] tokens = null;
+
+				if (selectedFields==null)
+					selectedFields = "1;2;3;4;5;6;";
+				
+				tokens = selectedFields.split(delims);
 
 				for (int i = 0; i < tokens.length; i++)
 					System.out.println(tokens[i]);
@@ -99,7 +102,6 @@ public class XlsxExpoter {
 
 				int rowsCount = timeEntryListData.getTimeEntryList().size();
 
-				
 				for (int i = 1; i <= rowsCount; i++) {
 
 					CellStyle cs = wb.createCellStyle();
@@ -107,7 +109,7 @@ public class XlsxExpoter {
 
 					Row row = sheet.createRow(i);
 					k = 0;
-					
+
 					if (tokens.length > 1) {
 
 						for (int j = 0; j < tokens.length; j++) {
@@ -178,7 +180,6 @@ public class XlsxExpoter {
 
 				wb.write(out);
 
-
 			} else {
 				System.out.println("HTTP error:" + rc);
 			}
@@ -186,6 +187,6 @@ public class XlsxExpoter {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 }

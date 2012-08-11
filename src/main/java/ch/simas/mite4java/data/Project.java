@@ -1,22 +1,65 @@
 package ch.simas.mite4java.data;
 
+import java.util.Date;
+
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "project")
 public class Project {
 
-	String name;
-
-	String note;
-
 	Integer budget;
-
-	boolean archived;
+	
+	Date createdAt;
+	
+	String budgetType;
 
 	Integer customerId;
 
 	Integer hourlyRate;
+	
+	Integer id;
+	
+	String name;
+
+	String note;
+	
+	Date updatedAt;
+
+	boolean archived;
+
+
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public String getBudgetType() {
+		return budgetType;
+	}
+
+	public void setBudgetType(String budgetType) {
+		this.budgetType = budgetType;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Date getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
+	}
 
 	public String getName() {
 		return name;

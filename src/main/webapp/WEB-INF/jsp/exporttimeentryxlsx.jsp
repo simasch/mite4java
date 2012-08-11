@@ -105,6 +105,42 @@ String miteapikey="";
 		<td><form:input name="miteApiKey" path="miteApiKey" value="<%=miteapikey %>" readonly="true"/></td>
 	</tr>
     </table>	
+    <br>
+    <br>
+    <br>
+    
+    <table border="0" cellspacing="0" id="AutoNumber3" width="620" cellpadding="3" bgcolor="#F3F3F3">
+    <tr>
+    <td align="center">
+    Filter by
+    </td>
+    <td>
+    </td>
+    <td align="center">
+    Group by
+    </td>
+    </tr>
+    
+    <tr>
+    <td>
+    <input type="checkbox" id="amountType1003" name="amountType1003"  value=1 /> Project
+    </td>
+    <td align="center">
+    <select size="1" id="yearStected" name="yearStected" onChange="setDateInfo()" width="300" style="width: 300px">
+    
+     <c:forEach items="${projectData}" var="field">
+     
+       <option value="${field.name}">${field.name}</option>
+       
+     </c:forEach>
+			
+	</select>
+	</td>
+	<td>
+	<input type="checkbox" id="amountType1003" name="amountType1003"  value=1 /> Time frame
+	</td>
+	<tr>
+	</table>
 
    <h3>Select fields to export</h3>
 

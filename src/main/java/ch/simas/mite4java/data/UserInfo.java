@@ -1,7 +1,5 @@
 package ch.simas.mite4java.data;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class UserInfo {
 

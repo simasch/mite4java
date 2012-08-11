@@ -70,7 +70,7 @@
 
 <h3>User information</h3>
 
-<form method="post" name="gettimeentry" action="getreportentrytxls.html" onsubmit="return validateForm()" >
+<form method="post" name="gettimeentry" action="getselectedreportentrytxls.html" onsubmit="return validateForm()" >
 
     
 	<table>

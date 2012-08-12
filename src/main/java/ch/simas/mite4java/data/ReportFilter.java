@@ -3,15 +3,15 @@ package ch.simas.mite4java.data;
 public class ReportFilter {
 
 	String customerFl;
-	
+
 	String projectFl;
-	
+
 	String serviceFl;
-	
+
 	String customerSelected;
-	
+
 	String projectSelected;
-	
+
 	String serviceSelected;
 
 	public String getCustomerFl() {
@@ -61,6 +61,5 @@ public class ReportFilter {
 	public void setServiceSelected(String serviceSelected) {
 		this.serviceSelected = serviceSelected;
 	}
-	
-	
+
 }

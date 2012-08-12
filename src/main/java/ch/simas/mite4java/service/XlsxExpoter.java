@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Unmarshaller;
@@ -17,12 +18,14 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import ch.simas.mite4java.data.ReportFilter;
+import ch.simas.mite4java.data.TimeEntry;
 import ch.simas.mite4java.data.TimeEntryData;
 import ch.simas.mite4java.utils.Getconnection;
 
 public class XlsxExpoter {
 
-	public void exportTimeEntryData(String subDomain, String apiKey, String selectedFields, OutputStream out) {
+	public void exportTimeEntryData(String subDomain, String apiKey, String selectedFields,ReportFilter repFltr, OutputStream out) {
 
 		String TARGET_HTTPS_SERVER = subDomain + ".mite.yo.lk";
 		String TARGET_URL = "https://" + subDomain + ".mite.yo.lk/time_entries.xml?api_key=" + apiKey;
@@ -47,6 +50,37 @@ public class XlsxExpoter {
 				TimeEntryData timeEntryListData = (TimeEntryData) jaxbUnmarshaller.unmarshal(br);
 
 				System.out.println(timeEntryListData.getTimeEntryList().get(0).getProjectName());
+				
+				
+				ArrayList<TimeEntry> timeEntryList=new ArrayList<TimeEntry>();
+				
+				int allRowsCount = timeEntryListData.getTimeEntryList().size();
+
+				for (int i = 0; i < allRowsCount; i++) {
+					
+					if(repFltr.getCustomerFl()!=null){
+						
+						if(repFltr.getCustomerSelected().equalsIgnoreCase(timeEntryListData.getTimeEntryList().get(i).getCustomerName()))
+							timeEntryList.add(timeEntryListData.getTimeEntryList().get(i));
+						
+					}else if(repFltr.getServiceFl()!=null){
+						
+						if(repFltr.getServiceSelected().equalsIgnoreCase(timeEntryListData.getTimeEntryList().get(i).getServiceName()))
+							timeEntryList.add(timeEntryListData.getTimeEntryList().get(i));
+					
+						
+					}else if(repFltr.getProjectFl()!=null){
+						
+						if(repFltr.getProjectSelected().equalsIgnoreCase(timeEntryListData.getTimeEntryList().get(i).getProjectName()))
+							timeEntryList.add(timeEntryListData.getTimeEntryList().get(i));
+					
+						
+					}else {
+						
+						timeEntryList.add(timeEntryListData.getTimeEntryList().get(i));
+					}
+					
+				}
 
 				String delims = ";";
 				String[] tokens = null;
@@ -100,7 +134,7 @@ public class XlsxExpoter {
 
 				}
 
-				int rowsCount = timeEntryListData.getTimeEntryList().size();
+				int rowsCount = timeEntryList.size();
 
 				for (int i = 1; i <= rowsCount; i++) {
 
@@ -116,33 +150,33 @@ public class XlsxExpoter {
 
 							if (Integer.valueOf(tokens[j].toString()) == 1) {
 								Cell cell11 = row.createCell(k);
-								cell11.setCellValue(timeEntryListData.getTimeEntryList().get(i - 1).getProjectName());
+								cell11.setCellValue(timeEntryList.get(i - 1).getProjectName());
 								cell11.setCellStyle(cs);
 								k++;
 							} else if (Integer.valueOf(tokens[j].toString()) == 2) {
 								Cell cell12 = row.createCell(k);
-								cell12.setCellValue(timeEntryListData.getTimeEntryList().get(i - 1).getServiceName());
+								cell12.setCellValue(timeEntryList.get(i - 1).getServiceName());
 								cell12.setCellStyle(cs);
 								k++;
 							} else if (Integer.valueOf(tokens[j].toString()) == 3) {
 								Cell cell13 = row.createCell(k);
-								cell13.setCellValue(timeEntryListData.getTimeEntryList().get(i - 1).getCustomerName());
+								cell13.setCellValue(timeEntryList.get(i - 1).getCustomerName());
 								cell13.setCellStyle(cs);
 								k++;
 							} else if (Integer.valueOf(tokens[j].toString()) == 4) {
 								Cell cell14 = row.createCell(k);
-								cell14.setCellValue(timeEntryListData.getTimeEntryList().get(i - 1).getUserName());
+								cell14.setCellValue(timeEntryList.get(i - 1).getUserName());
 								cell14.setCellStyle(cs);
 								k++;
 							} else if (Integer.valueOf(tokens[j].toString()) == 5) {
 								Cell cell15 = row.createCell(k);
-								double hours = timeEntryListData.getTimeEntryList().get(i - 1).getMinutes() / 60.00;
+								double hours = timeEntryList.get(i - 1).getMinutes() / 60.00;
 								cell15.setCellValue(hours);
 								cell15.setCellStyle(cs);
 								k++;
 							} else if (Integer.valueOf(tokens[j].toString()) == 6) {
 								Cell cell16 = row.createCell(k);
-								cell16.setCellValue(timeEntryListData.getTimeEntryList().get(i - 1).getUpdatedAt());
+								cell16.setCellValue(timeEntryList.get(i - 1).getUpdatedAt());
 								cell16.setCellStyle(cs);
 								k++;
 							}
@@ -152,28 +186,28 @@ public class XlsxExpoter {
 					} else {
 
 						Cell cell11 = row.createCell(0);
-						cell11.setCellValue(timeEntryListData.getTimeEntryList().get(i - 1).getProjectName());
+						cell11.setCellValue(timeEntryList.get(i - 1).getProjectName());
 						cell11.setCellStyle(cs);
 
 						Cell cell12 = row.createCell(1);
-						cell12.setCellValue(timeEntryListData.getTimeEntryList().get(i - 1).getServiceName());
+						cell12.setCellValue(timeEntryList.get(i - 1).getServiceName());
 						cell12.setCellStyle(cs);
 
 						Cell cell13 = row.createCell(2);
-						cell13.setCellValue(timeEntryListData.getTimeEntryList().get(i - 1).getCustomerName());
+						cell13.setCellValue(timeEntryList.get(i - 1).getCustomerName());
 						cell13.setCellStyle(cs);
 
 						Cell cell14 = row.createCell(3);
-						cell14.setCellValue(timeEntryListData.getTimeEntryList().get(i - 1).getUserName());
+						cell14.setCellValue(timeEntryList.get(i - 1).getUserName());
 						cell14.setCellStyle(cs);
 
 						Cell cell15 = row.createCell(4);
-						double hours = timeEntryListData.getTimeEntryList().get(i - 1).getMinutes() / 60.00;
+						double hours = timeEntryList.get(i - 1).getMinutes() / 60.00;
 						cell15.setCellValue(hours);
 						cell15.setCellStyle(cs);
 
 						Cell cell16 = row.createCell(5);
-						cell16.setCellValue(timeEntryListData.getTimeEntryList().get(i - 1).getUpdatedAt());
+						cell16.setCellValue(timeEntryList.get(i - 1).getUpdatedAt());
 						cell16.setCellStyle(cs);
 					}
 				}

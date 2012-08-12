@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import ch.simas.mite4java.data.Customer;
 import ch.simas.mite4java.data.Project;
+import ch.simas.mite4java.data.ReportFilter;
 import ch.simas.mite4java.data.Service;
 import ch.simas.mite4java.data.UserInfo;
 import ch.simas.mite4java.service.MiteSystem;
@@ -99,7 +100,66 @@ public class ReportController {
 	@RequestMapping(value = "/gettimeentryselectedfilelds", method = RequestMethod.POST)
 	public String getTimeEntrySelectedFields(HttpServletRequest request, @ModelAttribute("userInfo") UserInfo userInfo, BindingResult result) {
 
-		return "redirect:/gettimeentries?subdomain=" + userInfo.getSubDomainName() + "&apikey=" + userInfo.getMiteApiKey() + "&selectedfields=" + userInfo.getSelectedFields();
+		String customerFl=null;
+		String filterreqParam="";
+		
+		try{
+		customerFl=request.getParameter("customerFl");
+		}catch(Exception e){}
+		
+		if(customerFl!=null)
+			filterreqParam+="&customerFl="+customerFl;
+		
+		String projectFl=null;
+		try{
+		projectFl=request.getParameter("projectFl");
+		}catch(Exception e){}
+		
+		if(projectFl!=null)
+			filterreqParam+="&projectFl="+projectFl;
+		
+		String serviceFl=null;
+		try{
+		serviceFl=request.getParameter("serviceFl");
+		}catch(Exception e){}
+		
+		if(serviceFl!=null)
+			filterreqParam+="&serviceFl="+serviceFl;
+		
+		
+
+		String customerSelected=null;
+		try{		
+		customerSelected=request.getParameter("customerSelected");
+		}catch(Exception e){}
+		
+		if(customerSelected!=null)
+			filterreqParam+="&customerSelected="+customerSelected;
+	
+		
+		String projectSelected=null;
+		try{
+		projectSelected=request.getParameter("projectSelected");
+		}catch(Exception e){}
+		
+		if(projectSelected!=null)
+			filterreqParam+="&projectSelected="+projectSelected;
+	
+		
+		String serviceSelected=null;
+		try{
+		serviceSelected=request.getParameter("serviceSelected");
+		}catch(Exception e){}
+		
+		if(serviceSelected!=null)
+			filterreqParam+="&serviceSelected="+serviceSelected;
+	
+		
+		
+		
+		return "redirect:/gettimeentries?subdomain=" + userInfo.getSubDomainName() 
+				+ "&apikey=" + userInfo.getMiteApiKey() + "&selectedfields=" + userInfo.getSelectedFields()
+				+filterreqParam;
 
 	}
 
@@ -109,6 +169,49 @@ public class ReportController {
 		String apiKey = request.getParameter("apikey");
 		String subDomain = request.getParameter("subdomain");
 		String selectedFields = request.getParameter("selectedfields");
+		
+		String customerFl=null;
+		try{
+		customerFl=request.getParameter("customerFl");
+		}catch(Exception e){}
+		
+		String projectFl=null;
+		try{
+		projectFl=request.getParameter("projectFl");
+		}catch(Exception e){}
+		
+		String serviceFl=null;
+		try{
+		serviceFl=request.getParameter("serviceFl");
+		}catch(Exception e){}
+		
+
+		String customerSelected=null;
+		try{		
+		customerSelected=request.getParameter("customerSelected");
+		}catch(Exception e){}
+		
+		String projectSelected=null;
+		try{
+		projectSelected=request.getParameter("projectSelected");
+		}catch(Exception e){}
+		
+		String serviceSelected=null;
+		try{
+		serviceSelected=request.getParameter("serviceSelected");
+		}catch(Exception e){}
+		
+		
+		ReportFilter repFltr=new ReportFilter();
+		
+		repFltr.setCustomerFl(customerFl);
+		repFltr.setCustomerSelected(customerSelected);
+		repFltr.setProjectFl(projectFl);
+		repFltr.setProjectSelected(projectSelected);
+		repFltr.setServiceFl(serviceFl);
+		repFltr.setServiceSelected(serviceSelected);
+		
+		
 
 		OutputStream out = response.getOutputStream();
 
@@ -119,7 +222,7 @@ public class ReportController {
 
 		XlsxExpoter xlsxExporter = new XlsxExpoter();
 
-		xlsxExporter.exportTimeEntryData(subDomain, apiKey, selectedFields, out);
+		xlsxExporter.exportTimeEntryData(subDomain, apiKey, selectedFields,repFltr, out);
 
 		response.getOutputStream().flush();
 

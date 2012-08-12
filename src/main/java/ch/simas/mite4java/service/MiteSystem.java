@@ -16,20 +16,30 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
 import ch.simas.mite4java.data.Customer;
+import ch.simas.mite4java.data.CustomerData;
 import ch.simas.mite4java.data.FieldInfo;
 import ch.simas.mite4java.data.Project;
 import ch.simas.mite4java.data.ProjectData;
 import ch.simas.mite4java.data.Service;
+import ch.simas.mite4java.data.ServiceData;
 import ch.simas.mite4java.data.UserInfo;
 import ch.simas.mite4java.utils.Getconnection;
 
 public class MiteSystem {
 
-	public Map<String, Object> getMiteRootInfoMap(String subDomain, String apiKey, Map<String, Object> map) {
+	public Map<String, Object> getMiteAllMainInfoMap(String subDomain, String apiKey, Map<String, Object> map) {
 
 		ProjectData projectListData = getMiteProjectList(subDomain, apiKey);
+		
+		ServiceData serviceListData = getMiteServiceList(subDomain, apiKey);
+		
+		CustomerData customerListData = getMiteCustomerList(subDomain, apiKey);
 
 		map.put("projectData", projectListData.getProjectList());
+		
+		map.put("serviceData", serviceListData.getServiceList());
+		
+		map.put("customerData", customerListData.getCustomerList());
 
 		ArrayList<FieldInfo> fielList = new ArrayList<FieldInfo>();
 
@@ -104,6 +114,79 @@ public class MiteSystem {
 
 		return projectListData;
 	}
+	
+	public ServiceData getMiteServiceList(String subDomain, String apiKey) {
+
+		ServiceData serviceListData = null;
+
+		String TARGET_HTTPS_SERVER = subDomain + ".mite.yo.lk";
+		String TARGET_URL = "https://" + subDomain + ".mite.yo.lk/services.xml?api_key=" + apiKey;
+
+		Getconnection gcon = new Getconnection(TARGET_HTTPS_SERVER, "true");
+
+		gcon.getCon();
+
+		try {
+			URL serverAddress = new URL(TARGET_URL);
+
+			HttpURLConnection connection = (HttpURLConnection) serverAddress.openConnection();
+			connection.connect();
+			int rc = connection.getResponseCode();
+			if (rc == 200) {
+				BufferedReader br = new BufferedReader(new java.io.InputStreamReader(connection.getInputStream()));
+
+				JAXBContext jaxbContext = JAXBContext.newInstance(ServiceData.class);
+
+				Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+				serviceListData = (ServiceData) jaxbUnmarshaller.unmarshal(br);
+
+			} else {
+				System.out.println("HTTP error:" + rc);
+			}
+			connection.disconnect();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return serviceListData;
+	}
+	
+	
+	public CustomerData getMiteCustomerList(String subDomain, String apiKey) {
+
+		CustomerData customerListData = null;
+
+		String TARGET_HTTPS_SERVER = subDomain + ".mite.yo.lk";
+		String TARGET_URL = "https://" + subDomain + ".mite.yo.lk/customers.xml?api_key=" + apiKey;
+
+		Getconnection gcon = new Getconnection(TARGET_HTTPS_SERVER, "true");
+
+		gcon.getCon();
+
+		try {
+			URL serverAddress = new URL(TARGET_URL);
+
+			HttpURLConnection connection = (HttpURLConnection) serverAddress.openConnection();
+			connection.connect();
+			int rc = connection.getResponseCode();
+			if (rc == 200) {
+				BufferedReader br = new BufferedReader(new java.io.InputStreamReader(connection.getInputStream()));
+
+				JAXBContext jaxbContext = JAXBContext.newInstance(CustomerData.class);
+
+				Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+				customerListData = (CustomerData) jaxbUnmarshaller.unmarshal(br);
+
+			} else {
+				System.out.println("HTTP error:" + rc);
+			}
+			connection.disconnect();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return customerListData;
+	}
 
 	public String getProjectXmlResponse(String subDomain, String apiKey) {
 		String serverResp = "";
@@ -136,6 +219,8 @@ public class MiteSystem {
 
 		return serverResp;
 	}
+	
+	
 
 	public String getServiceXmlResponse(String subDomain, String apiKey) {
 		String serverResp = "";

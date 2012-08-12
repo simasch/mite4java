@@ -68,21 +68,7 @@ String miteapikey="";
     {
 
     	   
-        if(document.gettimeentry.subDomainName.value == "")
-        {
-     	   
-        alert("please enter sundomain name");   
-        return false;
-        
-        }
-     	  
-        if(document.gettimeentry.miteApiKey.value == "")
- 	   {
- 	   
- 	   alert("please enter Mite api key"); 
- 	   return false;
- 	   
- 	   }
+    
         
     }
     </script>
@@ -95,17 +81,16 @@ String miteapikey="";
 
     <form:input name="selectedFields" path="selectedFields" hidden="true"/>
     
-	<table>
+	<table width="620" bgcolor="#F3F3D0">
 	<tr>
-		<td><form:label path="subDomainName"><spring:message code="label.subdomain"/></form:label></td>
-		<td><form:input name="subDomainName" path="subDomainName" value="<%=subDomain %>" readonly="true"/></td> 
+		<td width="150"><form:label path="subDomainName"><spring:message code="label.subdomain"/></form:label></td>
+		<td><%=subDomain %><form:input name="subDomainName" path="subDomainName" value="<%=subDomain %>" hidden="true"/></td> 
 	</tr>
 	<tr>
-		<td><form:label path="miteApiKey"><spring:message code="label.miteapikey"/></form:label></td>
-		<td><form:input name="miteApiKey" path="miteApiKey" value="<%=miteapikey %>" readonly="true"/></td>
+		<td width="150"><form:label path="miteApiKey"><spring:message code="label.miteapikey"/></form:label></td>
+		<td><%=miteapikey %><form:input name="miteApiKey" path="miteApiKey" value="<%=miteapikey %>" hidden="true"/></td>
 	</tr>
     </table>	
-    <br>
     <br>
     <br>
     
@@ -121,12 +106,32 @@ String miteapikey="";
     </td>
     </tr>
     
-    <tr>
+     <tr>
     <td>
-    <input type="checkbox" id="amountType1003" name="amountType1003"  value=1 /> Project
+    <input type="checkbox" id="customerFl" name="customerFl"  value=1 /> Customer
     </td>
     <td align="center">
-    <select size="1" id="yearStected" name="yearStected" onChange="setDateInfo()" width="300" style="width: 300px">
+    <select size="1" id="yearStected" name="yearStected"  width="300" style="width: 300px">
+    
+     <c:forEach items="${customerData}" var="field">
+     
+       <option value="${field.name}">${field.name}</option>
+       
+     </c:forEach>
+			
+	</select>
+	</td>
+	<td>
+	<input type="checkbox" id="timeframeGr" name="timeframeGr"  value=1 /> Time frame
+	</td>
+	</tr>
+    
+    <tr>
+    <td>
+    <input type="checkbox" id="projectFl" name="projectFl"  value=1 /> Project
+    </td>
+    <td align="center">
+    <select size="1" id="yearStected" name="yearStected"  width="300" style="width: 300px">
     
      <c:forEach items="${projectData}" var="field">
      
@@ -137,10 +142,34 @@ String miteapikey="";
 	</select>
 	</td>
 	<td>
-	<input type="checkbox" id="amountType1003" name="amountType1003"  value=1 /> Time frame
+	<input type="checkbox" id="customerGr" name="customerGr"  value=1 /> Customer
 	</td>
-	<tr>
+	</tr>
+	
+	 <tr>
+    <td>
+    <input type="checkbox" id="serviceFl" name="serviceFl"  value=1 /> Service
+    </td>
+    <td align="center">
+    <select size="1" id="yearStected" name="yearStected" width="300" style="width: 300px">
+    
+     <c:forEach items="${serviceData}" var="field">
+     
+       <option value="${field.name}">${field.name}</option>
+       
+     </c:forEach>
+			
+	</select>
+	</td>
+	<td>
+	<input type="checkbox" id="projectGr" name="projectGr"  value=1 /> Project
+	</td>
+	</tr>
+	
 	</table>
+	
+	
+	
 
    <h3>Select fields to export</h3>
 

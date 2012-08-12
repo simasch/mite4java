@@ -91,7 +91,7 @@ public class ReportController {
 
 		MiteSystem miteSystem = new MiteSystem();
 
-		map = miteSystem.getMiteRootInfoMap(subDomain, apiKey, map);
+		map = miteSystem.getMiteAllMainInfoMap(subDomain, apiKey, map);
 
 		return "exporttimeentryxlsx";
 	}

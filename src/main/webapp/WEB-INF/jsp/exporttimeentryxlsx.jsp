@@ -111,7 +111,7 @@ String miteapikey="";
     <input type="checkbox" id="customerFl" name="customerFl"  value=1 /> Customer
     </td>
     <td align="center">
-    <select size="1" id="yearStected" name="yearStected"  width="300" style="width: 300px">
+    <select size="1" id="customerSelected" name="customerSelected"  width="300" style="width: 300px">
     
      <c:forEach items="${customerData}" var="field">
      
@@ -131,7 +131,7 @@ String miteapikey="";
     <input type="checkbox" id="projectFl" name="projectFl"  value=1 /> Project
     </td>
     <td align="center">
-    <select size="1" id="yearStected" name="yearStected"  width="300" style="width: 300px">
+    <select size="1" id="projectSelected" name="projectSelected"  width="300" style="width: 300px">
     
      <c:forEach items="${projectData}" var="field">
      
@@ -151,7 +151,7 @@ String miteapikey="";
     <input type="checkbox" id="serviceFl" name="serviceFl"  value=1 /> Service
     </td>
     <td align="center">
-    <select size="1" id="yearStected" name="yearStected" width="300" style="width: 300px">
+    <select size="1" id="serviceSelected" name="serviceSelected" width="300" style="width: 300px">
     
      <c:forEach items="${serviceData}" var="field">
      

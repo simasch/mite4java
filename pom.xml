@@ -14,11 +14,15 @@
 		<name>simas GmbH</name>
 		<url>http://www.simas.ch</url>
 	</organization>
-	
+
 	<developers>
 		<developer>
 			<id>jewelsub</id>
 			<name>Mohammad Rahaman</name>
+		</developer>
+		<developer>
+			<id>simasch</id>
+			<name>Simon Martinelli</name>
 		</developer>
 	</developers>
 

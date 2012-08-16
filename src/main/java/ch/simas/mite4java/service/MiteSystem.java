@@ -68,11 +68,16 @@ public class MiteSystem {
 		fieldData5.setFieldId(5);
 		fieldData5.setFieldName("Hour");
 		fielList.add(fieldData5);
-
+		
 		FieldInfo fieldData6 = new FieldInfo();
 		fieldData6.setFieldId(6);
-		fieldData6.setFieldName("Update Date");
+		fieldData6.setFieldName("Revenue");
 		fielList.add(fieldData6);
+
+		FieldInfo fieldData7 = new FieldInfo();
+		fieldData7.setFieldId(7);
+		fieldData7.setFieldName("Update Date");
+		fielList.add(fieldData7);
 
 		map.put("userInfo", new UserInfo());
 		map.put("fieldList", fielList);

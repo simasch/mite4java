@@ -27,6 +27,7 @@
 	</developers>
 
 	<properties>
+	    <!-- JBOSS-->
 		<org.springframework.version>3.1.2.RELEASE</org.springframework.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -36,6 +37,7 @@
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
+				    <!-- JBOSS-->
 					<source>1.6</source>
 					<target>1.6</target>
 				</configuration>

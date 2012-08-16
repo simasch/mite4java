@@ -25,7 +25,7 @@ import ch.simas.mite4java.utils.Getconnection;
 
 public class XlsxExpoter {
 
-	public void exportTimeEntryData(String subDomain, String apiKey, String selectedFields,ReportFilter repFltr, OutputStream out) {
+	public void exportTimeEntryData(String subDomain, String apiKey, String selectedFields,ReportFilter repFltr,String reportHeader, String reportFooter, OutputStream out) {
 
 		String TARGET_HTTPS_SERVER = subDomain + ".mite.yo.lk";
 		String TARGET_URL = "https://" + subDomain + ".mite.yo.lk/time_entries.xml?api_key=" + apiKey;
@@ -95,17 +95,57 @@ public class XlsxExpoter {
 
 				Workbook wb = new XSSFWorkbook();
 
-				Sheet sheet = wb.createSheet("Fonts");
+				Sheet sheet = wb.createSheet("Time Entry");
+				
+				Font fontBrown = wb.createFont();
+				fontBrown.setColor(IndexedColors.BROWN.getIndex());
+				
+				Font fontBlueSmall = wb.createFont();
+				fontBlueSmall.setColor(IndexedColors.BLUE.getIndex());
+				
+				Font fontHeader = wb.createFont();
+				fontHeader.getBoldweight();
+				fontHeader.setFontHeightInPoints((short)18);
 
-				Font font0 = wb.createFont();
-				font0.setColor(IndexedColors.BROWN.getIndex());
+				CellStyle csLabel = wb.createCellStyle();
+				csLabel.setFont(fontBlueSmall);
+				csLabel.setFillForegroundColor(IndexedColors.BLUE.getIndex());
+				csLabel.setFillBackgroundColor(IndexedColors.BLUE.getIndex());
+				csLabel.setWrapText(false);
+				csLabel.setBorderBottom(CellStyle.BORDER_THIN);
+				csLabel.setBorderTop(CellStyle.BORDER_THIN);
+				csLabel.setBorderLeft(CellStyle.BORDER_THIN);
+				csLabel.setBorderRight(CellStyle.BORDER_THIN);
+				
+				csLabel.setBottomBorderColor(IndexedColors.BLACK.getIndex());
+				csLabel.setTopBorderColor(IndexedColors.BLACK.getIndex());
+				csLabel.setLeftBorderColor(IndexedColors.BLACK.getIndex());
+				csLabel.setRightBorderColor(IndexedColors.BLACK.getIndex());
+				
+				CellStyle csHeader = wb.createCellStyle();
+				csHeader.setFont(fontHeader);
+				csHeader.setWrapText(false);
+				csHeader.setFillBackgroundColor(IndexedColors.BROWN.getIndex());
+				
+			
+				
+				CellStyle csFooter= wb.createCellStyle();
+				csFooter.setFont(fontBrown);
+				csFooter.setWrapText(false);
+				
+				
+					
+				int currentRowNumber=0;
+				Row rowHeader = sheet.createRow(currentRowNumber);
+				currentRowNumber++;
+				Cell cellHeader = rowHeader.createCell(0);
+				cellHeader.setCellValue(reportHeader);
+				cellHeader.setCellStyle(csHeader);
 
-				CellStyle csl = wb.createCellStyle();
-				csl.setWrapText(true);
-				csl.setFont(font0);
-				csl.setWrapText(true);
-
-				Row row0 = sheet.createRow(0);
+				currentRowNumber++;
+				
+				Row row0 = sheet.createRow(currentRowNumber);
+				currentRowNumber++;
 				int k = 0;
 				String EntryTimeFields[] = { "", "Project", "Service", "Customer", "User", "Hours", "Update Date" };
 
@@ -115,7 +155,7 @@ public class XlsxExpoter {
 						Cell cell0 = row0.createCell(k);
 
 						cell0.setCellValue(EntryTimeFields[Integer.valueOf(tokens[i])]);
-						cell0.setCellStyle(csl);
+						cell0.setCellStyle(csLabel);
 						k++;
 
 					}
@@ -127,7 +167,7 @@ public class XlsxExpoter {
 						Cell cell0 = row0.createCell(k);
 
 						cell0.setCellValue(EntryTimeFields[i]);
-						cell0.setCellStyle(csl);
+						cell0.setCellStyle(csLabel);
 						k++;
 
 					}
@@ -138,16 +178,26 @@ public class XlsxExpoter {
 
 				for (int i = 1; i <= rowsCount; i++) {
 
+					Row row = sheet.createRow(currentRowNumber);
 					CellStyle cs = wb.createCellStyle();
-					cs.setWrapText(true);
-
-					Row row = sheet.createRow(i);
+					cs.setWrapText(false);
+					cs.setBorderBottom(CellStyle.BORDER_THIN);
+					cs.setBorderTop(CellStyle.BORDER_THIN);
+					cs.setBorderLeft(CellStyle.BORDER_THIN);
+					cs.setBorderRight(CellStyle.BORDER_THIN);
+					
+					cs.setBottomBorderColor(IndexedColors.BLACK.getIndex());
+					cs.setTopBorderColor(IndexedColors.BLACK.getIndex());
+					cs.setLeftBorderColor(IndexedColors.BLACK.getIndex());
+					cs.setRightBorderColor(IndexedColors.BLACK.getIndex());
+					currentRowNumber++;
 					k = 0;
 
 					if (tokens.length > 1) {
 
 						for (int j = 0; j < tokens.length; j++) {
-
+							
+							
 							if (Integer.valueOf(tokens[j].toString()) == 1) {
 								Cell cell11 = row.createCell(k);
 								cell11.setCellValue(timeEntryList.get(i - 1).getProjectName());
@@ -211,6 +261,22 @@ public class XlsxExpoter {
 						cell16.setCellStyle(cs);
 					}
 				}
+				
+				currentRowNumber++;
+				Row rowFooter= sheet.createRow(currentRowNumber);
+				Cell cellFooter = rowFooter.createCell(0);
+				cellFooter.setCellValue(reportFooter);
+				cellFooter.setCellStyle(csFooter);
+				
+				Sheet sheet1 = wb.getSheetAt(0);
+			    sheet1.autoSizeColumn(1); //adjust width of the second column
+			    sheet1.autoSizeColumn(2); //adjust width of the first column
+			    sheet1.autoSizeColumn(3); //adjust width of the second column
+			    sheet1.autoSizeColumn(4); //adjust width of the first column
+			    sheet1.autoSizeColumn(5); //adjust width of the second column
+			    sheet1.autoSizeColumn(6); //adjust width of the first column
+			    sheet1.autoSizeColumn(7); //adjust width of the second column
+			 
 
 				wb.write(out);
 

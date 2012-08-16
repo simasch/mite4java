@@ -4,45 +4,7 @@
 <html>
 <head>
 	<title>Report, Admin Panel</title>
-    <style type="text/css">
-        .container {
-                float: left;
-                padding: 3px;
-        }
-        .container select{
-                width: 20em;
-        }
-        input[type="button"]{
-                width: 5em;
-        }
-        .low{
-                position: relative; 
-                top: 35px;
-        }
-    </style>
-    <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
     <script type="text/javascript">
-
-    $(function() {
-		$(".low input[type='button']").click(function(){
-				var arr = $(this).attr("name").split("2");
-				var from = arr[0];
-				var to = arr[1];
-				$("#" + from + " option:selected").each(function(){
-           $("#" + to).append($(this).clone());
-           $(this).remove();
-    
-           document.gettimeentry.selectedFields.value = "";
-
-           for (i=0;i<document.gettimeentry.itemsToAdd.length;i++)
-            document.gettimeentry.selectedFields.value = document.gettimeentry.selectedFields.value + document.gettimeentry.itemsToAdd.options[i].value + ";";
-
-           
-        });
-		});
-    });
-    
-    
     function validateForm()
     {
 

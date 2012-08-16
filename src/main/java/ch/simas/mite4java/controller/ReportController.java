@@ -155,6 +155,24 @@ public class ReportController {
 
 		if (serviceSelected != null)
 			filterreqParam += "&serviceSelected=" + serviceSelected;
+		
+		String reportHeader = null;
+		try {
+			reportHeader = request.getParameter("reportheader");
+		} catch (Exception e) {
+		}
+
+		if (reportHeader != null)
+			filterreqParam += "&reportheader=" + reportHeader;
+		
+		String reportFooter = null;
+		try {
+			reportFooter = request.getParameter("reportfooter");
+		} catch (Exception e) {
+		}
+
+		if (reportFooter != null)
+			filterreqParam += "&reportfooter=" + reportFooter;
 
 		return "redirect:/gettimeentries?subdomain=" + userInfo.getSubDomainName() + "&apikey=" + userInfo.getMiteApiKey() + "&selectedfields=" + userInfo.getSelectedFields() + filterreqParam;
 
@@ -202,7 +220,21 @@ public class ReportController {
 			serviceSelected = request.getParameter("serviceSelected");
 		} catch (Exception e) {
 		}
+		
+		String reportHeader = null;
+		try {
+			reportHeader = request.getParameter("reportheader");
+		} catch (Exception e) {
+		}
 
+	
+		String reportFooter = null;
+		try {
+			reportFooter = request.getParameter("reportfooter");
+		} catch (Exception e) {
+		}
+
+	
 		ReportFilter repFltr = new ReportFilter();
 
 		repFltr.setCustomerFl(customerFl);
@@ -221,7 +253,8 @@ public class ReportController {
 
 		XlsxExpoter xlsxExporter = new XlsxExpoter();
 
-		xlsxExporter.exportTimeEntryData(subDomain, apiKey, selectedFields, repFltr, out);
+		xlsxExporter.exportTimeEntryData(subDomain, apiKey, selectedFields, repFltr,
+				                         reportHeader,reportFooter, out);
 
 		response.getOutputStream().flush();
 

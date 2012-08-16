@@ -75,8 +75,6 @@ String miteapikey="";
 </head>
 <body>
 
-<h3>User information</h3>
-
 <form:form method="post" name="gettimeentry" action="gettimeentryselectedfilelds.html" modelAttribute="userInfo" onsubmit="return validateForm()" >
 
     <form:input name="selectedFields" path="selectedFields" hidden="true"/>
@@ -167,11 +165,8 @@ String miteapikey="";
 	</tr>
 	
 	</table>
-	
-	
-	
 
-   <h3>Select fields to export</h3>
+   <h4>Select fields to export</h4>
 
   <table>
 	<tr>
@@ -198,19 +193,40 @@ String miteapikey="";
   
     </td> 
 	</tr>
+	<tr>
+	<td>
+	<br>
+	<table width="616" bgcolor="#F3F3D0">
+	<tr>
+		<td><label><spring:message code="label.reportheader"/></label></td>
+	</tr>
+	<tr>
+		<td width="200">
+		<textarea name="reportheader" cols="76" rows="3"></textarea>
+        </td>
+	</tr>
+	<tr>
+		<td><label><spring:message code="label.reportfooter"/></label></td>
+	</tr>
+	<tr>
+		<td width="200" >
+		<textarea name="reportfooter" cols="76" rows="3"></textarea>
+        </td>
+	</tr>
+	</table>
 	
+	</td>
+	</tr>
 	<tr>
 	<td >
+	<br>
 	<div align="center">
-	<br>
-	<br>
-	<br>
     <input type="submit" value="<spring:message code="label.expotxlsxbutton"/>"/>
     </div>
     </td>
     </tr>
   </table>
-  
+
 </form:form>
 
 </body>

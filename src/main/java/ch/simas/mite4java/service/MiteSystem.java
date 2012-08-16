@@ -35,11 +35,12 @@ public class MiteSystem {
 		
 		CustomerData customerListData = getMiteCustomerList(subDomain, apiKey);
 
-		map.put("projectData", projectListData.getProjectList());
-		
-		map.put("serviceData", serviceListData.getServiceList());
-		
-		map.put("customerData", customerListData.getCustomerList());
+		if(projectListData!=null)
+		   map.put("projectData", projectListData.getProjectList());
+		if(serviceListData!=null)
+		   map.put("serviceData", serviceListData.getServiceList());
+		if(customerListData!=null)
+		   map.put("customerData", customerListData.getCustomerList());
 
 		ArrayList<FieldInfo> fielList = new ArrayList<FieldInfo>();
 

@@ -173,8 +173,39 @@ public class ReportController {
 
 		if (reportFooter != null)
 			filterreqParam += "&reportfooter=" + reportFooter;
+		
+		
+		String serviceGr = null;
+		String groupParam = "";
 
-		return "redirect:/gettimeentries?subdomain=" + userInfo.getSubDomainName() + "&apikey=" + userInfo.getMiteApiKey() + "&selectedfields=" + userInfo.getSelectedFields() + filterreqParam;
+		try {
+			serviceGr = request.getParameter("serviceGr");
+		} catch (Exception e) {
+		}
+
+		if (serviceGr != null)
+			groupParam += "&serviceGr=" + serviceGr;
+		
+		String customerGr = null;
+		try {
+			customerGr = request.getParameter("customerGr");
+		} catch (Exception e) {
+		}
+
+		if (customerGr != null)
+			groupParam += "&customerGr=" + customerGr;
+		
+		String projectGr = null;
+		try {
+			projectGr = request.getParameter("projectGr");
+		} catch (Exception e) {
+		}
+
+		if (projectGr != null)
+			groupParam += "&projectGr=" + projectGr;
+		
+
+		return "redirect:/gettimeentries?subdomain=" + userInfo.getSubDomainName() + "&apikey=" + userInfo.getMiteApiKey() + "&selectedfields=" + userInfo.getSelectedFields() + filterreqParam+ groupParam;
 
 	}
 
@@ -200,6 +231,24 @@ public class ReportController {
 		String serviceFl = null;
 		try {
 			serviceFl = request.getParameter("serviceFl");
+		} catch (Exception e) {
+		}
+		
+		String customerGr = null;
+		try {
+			customerGr = request.getParameter("customerGr");
+		} catch (Exception e) {
+		}
+
+		String projectGr = null;
+		try {
+			projectGr = request.getParameter("projectGr");
+		} catch (Exception e) {
+		}
+
+		String serviceGr = null;
+		try {
+			serviceGr = request.getParameter("serviceGr");
 		} catch (Exception e) {
 		}
 
@@ -243,6 +292,9 @@ public class ReportController {
 		repFltr.setProjectSelected(projectSelected);
 		repFltr.setServiceFl(serviceFl);
 		repFltr.setServiceSelected(serviceSelected);
+		repFltr.setCustomerGr(customerGr);
+		repFltr.setProjectGr(projectGr);
+		repFltr.setServiceGr(serviceGr);
 
 		OutputStream out = response.getOutputStream();
 

@@ -120,7 +120,7 @@ String miteapikey="";
 	</select>
 	</td>
 	<td>
-	<input type="checkbox" id="timeframeGr" name="timeframeGr"  value=1 /> Time frame
+	<input type="checkbox" id="serviceGr" name="serviceGr"  value=1 /> Service
 	</td>
 	</tr>
     

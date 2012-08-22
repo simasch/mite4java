@@ -30,17 +30,17 @@ public class MiteSystem {
 	public Map<String, Object> getMiteAllMainInfoMap(String subDomain, String apiKey, Map<String, Object> map) {
 
 		ProjectData projectListData = getMiteProjectList(subDomain, apiKey);
-		
+
 		ServiceData serviceListData = getMiteServiceList(subDomain, apiKey);
-		
+
 		CustomerData customerListData = getMiteCustomerList(subDomain, apiKey);
 
-		if(projectListData!=null)
-		   map.put("projectData", projectListData.getProjectList());
-		if(serviceListData!=null)
-		   map.put("serviceData", serviceListData.getServiceList());
-		if(customerListData!=null)
-		   map.put("customerData", customerListData.getCustomerList());
+		if (projectListData != null)
+			map.put("projectData", projectListData.getProjectList());
+		if (serviceListData != null)
+			map.put("serviceData", serviceListData.getServiceList());
+		if (customerListData != null)
+			map.put("customerData", customerListData.getCustomerList());
 
 		ArrayList<FieldInfo> fielList = new ArrayList<FieldInfo>();
 
@@ -68,7 +68,7 @@ public class MiteSystem {
 		fieldData5.setFieldId(5);
 		fieldData5.setFieldName("Hour");
 		fielList.add(fieldData5);
-		
+
 		FieldInfo fieldData6 = new FieldInfo();
 		fieldData6.setFieldId(6);
 		fieldData6.setFieldName("Revenue");
@@ -120,7 +120,7 @@ public class MiteSystem {
 
 		return projectListData;
 	}
-	
+
 	public ServiceData getMiteServiceList(String subDomain, String apiKey) {
 
 		ServiceData serviceListData = null;
@@ -156,8 +156,7 @@ public class MiteSystem {
 
 		return serviceListData;
 	}
-	
-	
+
 	public CustomerData getMiteCustomerList(String subDomain, String apiKey) {
 
 		CustomerData customerListData = null;
@@ -225,8 +224,6 @@ public class MiteSystem {
 
 		return serverResp;
 	}
-	
-	
 
 	public String getServiceXmlResponse(String subDomain, String apiKey) {
 		String serverResp = "";

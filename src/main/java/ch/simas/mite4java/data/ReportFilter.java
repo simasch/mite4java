@@ -7,7 +7,7 @@ public class ReportFilter {
 	String projectFl;
 
 	String serviceFl;
-	
+
 	String customerGr;
 
 	String projectGr;
@@ -20,7 +20,6 @@ public class ReportFilter {
 
 	String serviceSelected;
 
-	
 	public String getCustomerGr() {
 		return customerGr;
 	}

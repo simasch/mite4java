@@ -1,6 +1,5 @@
 package ch.simas.mite4java.data;
 
-
 public class UserInfo {
 
 	Integer userId;

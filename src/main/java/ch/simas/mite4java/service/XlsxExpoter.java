@@ -30,10 +30,9 @@ import ch.simas.mite4java.utils.Getconnection;
 public class XlsxExpoter {
 
 	Workbook wb = new XSSFWorkbook();
-	
-	Double grandTotal=0.0;
-	int revenuePos = 0;
 
+	Double grandTotal = 0.0;
+	int revenuePos = 0;
 
 	public void exportTimeEntryData(String subDomain, String apiKey, String selectedFields, ReportFilter repFltr, String reportHeader, String reportFooter, OutputStream out) {
 
@@ -122,104 +121,98 @@ public class XlsxExpoter {
 				Cell cellHeader = rowHeader.createCell(0);
 				cellHeader.setCellValue(reportHeader);
 				cellHeader.setCellStyle(csHeader);
-				
-				String blockHeader="";
-				String blockFooter="";
-				
+
+				String blockHeader = "";
+				String blockFooter = "";
+
 				MiteSystem miteSystem = new MiteSystem();
-				
+
 				int filteredRowCount = timeEntryList.size();
 
+				if (repFltr.getCustomerGr() != null) {
 
-				if (repFltr.getCustomerGr() != null){
-					
 					CustomerData customerListData = miteSystem.getMiteCustomerList(subDomain, apiKey);
-					
-					
+
 					for (int i = 0; i < customerListData.getCustomerList().size(); i++) {
 
-					String customer=customerListData.getCustomerList().get(i).getName();
-					
-					ArrayList<TimeEntry> groupTimeEntryList = new ArrayList<TimeEntry>();
-					
-					for (int j = 0; j < filteredRowCount; j++) {
+						String customer = customerListData.getCustomerList().get(i).getName();
 
-					   if (timeEntryList.get(j).getCustomerName().equalsIgnoreCase(customer))
-						   groupTimeEntryList.add(timeEntryList.get(j));
-						
-						}
-					
-
-					blockHeader="Customer : "+customer;
-					if(groupTimeEntryList.size()>0)
-					  currentRowNumber = addBlockDataInSheet(sheet, currentRowNumber, tokens, groupTimeEntryList, blockHeader,blockFooter);					
-						
-					}
-						
-				}else if (repFltr.getServiceGr() != null){
-					
-					ServiceData serviceListData = miteSystem.getMiteServiceList(subDomain, apiKey);
-					
-					for (int i = 0; i < serviceListData.getServiceList().size(); i++) {
-
-					String service=serviceListData.getServiceList().get(i).getName();
-					
-					ArrayList<TimeEntry> groupTimeEntryList = new ArrayList<TimeEntry>();
-					
-					for (int j = 0; j < filteredRowCount; j++) {
-
-					   if (timeEntryList.get(j).getServiceName().equalsIgnoreCase(service))
-						   groupTimeEntryList.add(timeEntryList.get(j));
-						
-						}
-					
-
-					blockHeader="Service : "+service;
-					if(groupTimeEntryList.size()>0)
-					  currentRowNumber = addBlockDataInSheet(sheet, currentRowNumber, tokens, groupTimeEntryList, blockHeader,blockFooter);
-					
-					}
-					
-				}else if (repFltr.getProjectGr() != null){
-
-					ProjectData projectListData = miteSystem.getMiteProjectList(subDomain, apiKey);
-					
-					for (int i = 0; i < projectListData.getProjectList().size(); i++) {
-
-						String project=projectListData.getProjectList().get(i).getName();
-						
 						ArrayList<TimeEntry> groupTimeEntryList = new ArrayList<TimeEntry>();
-						
+
 						for (int j = 0; j < filteredRowCount; j++) {
 
-						   if (timeEntryList.get(j).getProjectName().equalsIgnoreCase(project))
-							   groupTimeEntryList.add(timeEntryList.get(j));
-							
-							}
-						
+							if (timeEntryList.get(j).getCustomerName().equalsIgnoreCase(customer))
+								groupTimeEntryList.add(timeEntryList.get(j));
 
-					blockHeader="Project : "+project;
-					if(groupTimeEntryList.size()>0)	
-				       currentRowNumber = addBlockDataInSheet(sheet, currentRowNumber, tokens, groupTimeEntryList, blockHeader,blockFooter);
-				
+						}
+
+						blockHeader = "Customer : " + customer;
+						if (groupTimeEntryList.size() > 0)
+							currentRowNumber = addBlockDataInSheet(sheet, currentRowNumber, tokens, groupTimeEntryList, blockHeader, blockFooter);
+
 					}
-					
-				}else{
-				
-				if(timeEntryList.size()>0)
-				   currentRowNumber = addBlockDataInSheet(sheet, currentRowNumber, tokens, timeEntryList, blockHeader,blockFooter);
-				
+
+				} else if (repFltr.getServiceGr() != null) {
+
+					ServiceData serviceListData = miteSystem.getMiteServiceList(subDomain, apiKey);
+
+					for (int i = 0; i < serviceListData.getServiceList().size(); i++) {
+
+						String service = serviceListData.getServiceList().get(i).getName();
+
+						ArrayList<TimeEntry> groupTimeEntryList = new ArrayList<TimeEntry>();
+
+						for (int j = 0; j < filteredRowCount; j++) {
+
+							if (timeEntryList.get(j).getServiceName().equalsIgnoreCase(service))
+								groupTimeEntryList.add(timeEntryList.get(j));
+
+						}
+
+						blockHeader = "Service : " + service;
+						if (groupTimeEntryList.size() > 0)
+							currentRowNumber = addBlockDataInSheet(sheet, currentRowNumber, tokens, groupTimeEntryList, blockHeader, blockFooter);
+
+					}
+
+				} else if (repFltr.getProjectGr() != null) {
+
+					ProjectData projectListData = miteSystem.getMiteProjectList(subDomain, apiKey);
+
+					for (int i = 0; i < projectListData.getProjectList().size(); i++) {
+
+						String project = projectListData.getProjectList().get(i).getName();
+
+						ArrayList<TimeEntry> groupTimeEntryList = new ArrayList<TimeEntry>();
+
+						for (int j = 0; j < filteredRowCount; j++) {
+
+							if (timeEntryList.get(j).getProjectName().equalsIgnoreCase(project))
+								groupTimeEntryList.add(timeEntryList.get(j));
+
+						}
+
+						blockHeader = "Project : " + project;
+						if (groupTimeEntryList.size() > 0)
+							currentRowNumber = addBlockDataInSheet(sheet, currentRowNumber, tokens, groupTimeEntryList, blockHeader, blockFooter);
+
+					}
+
+				} else {
+
+					if (timeEntryList.size() > 0)
+						currentRowNumber = addBlockDataInSheet(sheet, currentRowNumber, tokens, timeEntryList, blockHeader, blockFooter);
+
 				}
-				
+
 				Row rowSubTotal = sheet.createRow(currentRowNumber);
 				Cell cell18 = rowSubTotal.createCell(revenuePos - 1);
 				cell18.setCellValue("Total Revenue (€)");
 				cell18.setCellStyle(csFooter);
-				
-			
+
 				Cell cell19 = rowSubTotal.createCell(revenuePos);
 				cell19.setCellValue(grandTotal);
-			
+
 				currentRowNumber++;
 				Row rowFooter = sheet.createRow(currentRowNumber);
 				Cell cellFooter = rowFooter.createCell(0);
@@ -259,22 +252,20 @@ public class XlsxExpoter {
 		CellStyle csBlockHeader = wb.createCellStyle();
 		csBlockHeader.setFont(fontBlueSmall);
 		csBlockHeader.setWrapText(false);
-	
+
 		CellStyle csBlockFooter = wb.createCellStyle();
 		csBlockFooter.setFont(fontBlockFooter);
 		csBlockFooter.setWrapText(false);
-		
+
 		currentRowNumber++;
 		Row rowHeader = sheet.createRow(currentRowNumber);
 		Cell cellHeader = rowHeader.createCell(0);
 		cellHeader.setCellValue(blockHeader);
 		cellHeader.setCellStyle(csBlockHeader);
-		
-		
+
 		for (int i = 0; i < tokens.length; i++)
 			System.out.println(tokens[i]);
 
-		
 		CellStyle csLabel = wb.createCellStyle();
 		csLabel.setFont(fontBlueSmall);
 		csLabel.setFillForegroundColor(IndexedColors.BLUE.getIndex());
@@ -301,7 +292,6 @@ public class XlsxExpoter {
 		cs.setTopBorderColor(IndexedColors.BLACK.getIndex());
 		cs.setLeftBorderColor(IndexedColors.BLACK.getIndex());
 		cs.setRightBorderColor(IndexedColors.BLACK.getIndex());
-
 
 		DecimalFormat twoDForm = new DecimalFormat("#.##");
 
@@ -340,7 +330,7 @@ public class XlsxExpoter {
 		int rowsCount = timeEntryList.size();
 
 		Double totalRevenue = 0.0;
-		
+
 		for (int i = 1; i <= rowsCount; i++) {
 
 			Row row = sheet.createRow(currentRowNumber);
@@ -434,19 +424,18 @@ public class XlsxExpoter {
 		Row rowSubTotal = sheet.createRow(currentRowNumber);
 		Cell cell18 = rowSubTotal.createCell(revenuePos - 1);
 		cell18.setCellValue("Revenue (€)");
-		
-	
+
 		Cell cell19 = rowSubTotal.createCell(revenuePos);
 		cell19.setCellValue(Double.valueOf(twoDForm.format(totalRevenue / 100)));
-		grandTotal+=Double.valueOf(twoDForm.format(totalRevenue / 100));
-		
+		grandTotal += Double.valueOf(twoDForm.format(totalRevenue / 100));
+
 		currentRowNumber++;
-		
+
 		Row rowBlockFooter = sheet.createRow(currentRowNumber);
 		Cell cellblockFooter = rowBlockFooter.createCell(0);
 		cellblockFooter.setCellValue(blockFooter);
 		cellblockFooter.setCellStyle(csBlockFooter);
-		
+
 		currentRowNumber++;
 
 		return currentRowNumber;

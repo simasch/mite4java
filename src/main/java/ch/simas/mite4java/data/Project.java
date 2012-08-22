@@ -9,25 +9,24 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Project {
 
 	Integer budget;
-	
+
 	Date createdAt;
-	
+
 	String budgetType;
 
 	Integer customerId;
 
 	Integer hourlyRate;
-	
+
 	Integer id;
-	
+
 	String name;
 
 	String note;
-	
+
 	Date updatedAt;
 
 	boolean archived;
-
 
 	public Date getCreatedAt() {
 		return createdAt;

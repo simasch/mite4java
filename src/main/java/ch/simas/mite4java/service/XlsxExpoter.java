@@ -141,7 +141,7 @@ public class XlsxExpoter {
 
 						for (int j = 0; j < filteredRowCount; j++) {
 
-							if (timeEntryList.get(j).getCustomerName().equalsIgnoreCase(customer))
+								if (timeEntryList.get(j).getCustomerName()!=null && timeEntryList.get(j).getCustomerName().equalsIgnoreCase(customer))
 								groupTimeEntryList.add(timeEntryList.get(j));
 
 						}
@@ -151,6 +151,20 @@ public class XlsxExpoter {
 							currentRowNumber = addBlockDataInSheet(sheet, currentRowNumber, tokens, groupTimeEntryList, blockHeader, blockFooter);
 
 					}
+
+			
+					ArrayList<TimeEntry> groupTimeEntryList = new ArrayList<TimeEntry>();
+					
+						for (int j = 0; j < filteredRowCount; j++) {
+
+							if (timeEntryList.get(j).getCustomerName()==null)
+								groupTimeEntryList.add(timeEntryList.get(j));
+
+						}
+						
+					blockHeader = "Customer : ";
+					if (groupTimeEntryList.size() > 0)
+						currentRowNumber = addBlockDataInSheet(sheet, currentRowNumber, tokens, groupTimeEntryList, blockHeader, blockFooter);
 
 				} else if (repFltr.getServiceGr() != null) {
 
@@ -164,7 +178,7 @@ public class XlsxExpoter {
 
 						for (int j = 0; j < filteredRowCount; j++) {
 
-							if (timeEntryList.get(j).getServiceName().equalsIgnoreCase(service))
+							if (timeEntryList.get(j).getServiceName()!=null && timeEntryList.get(j).getServiceName().equalsIgnoreCase(service))
 								groupTimeEntryList.add(timeEntryList.get(j));
 
 						}
@@ -174,6 +188,21 @@ public class XlsxExpoter {
 							currentRowNumber = addBlockDataInSheet(sheet, currentRowNumber, tokens, groupTimeEntryList, blockHeader, blockFooter);
 
 					}
+
+					ArrayList<TimeEntry> groupTimeEntryList = new ArrayList<TimeEntry>();
+
+					for (int j = 0; j < filteredRowCount; j++) {
+
+						if (timeEntryList.get(j).getServiceName()==null)
+							groupTimeEntryList.add(timeEntryList.get(j));
+
+					}
+
+					blockHeader = "Service : ";
+					if (groupTimeEntryList.size() > 0)
+						currentRowNumber = addBlockDataInSheet(sheet, currentRowNumber, tokens, groupTimeEntryList, blockHeader, blockFooter);
+
+				
 
 				} else if (repFltr.getProjectGr() != null) {
 
@@ -187,7 +216,7 @@ public class XlsxExpoter {
 
 						for (int j = 0; j < filteredRowCount; j++) {
 
-							if (timeEntryList.get(j).getProjectName().equalsIgnoreCase(project))
+							if (timeEntryList.get(j).getProjectName()!=null && timeEntryList.get(j).getProjectName().equalsIgnoreCase(project))
 								groupTimeEntryList.add(timeEntryList.get(j));
 
 						}
@@ -198,6 +227,20 @@ public class XlsxExpoter {
 
 					}
 
+					ArrayList<TimeEntry> groupTimeEntryList = new ArrayList<TimeEntry>();
+
+					for (int j = 0; j < filteredRowCount; j++) {
+
+						if (timeEntryList.get(j).getProjectName()==null)
+							groupTimeEntryList.add(timeEntryList.get(j));
+
+					}
+
+					blockHeader = "Project : ";
+					if (groupTimeEntryList.size() > 0)
+						currentRowNumber = addBlockDataInSheet(sheet, currentRowNumber, tokens, groupTimeEntryList, blockHeader, blockFooter);
+
+
 				} else {
 
 					if (timeEntryList.size() > 0)
@@ -205,6 +248,8 @@ public class XlsxExpoter {
 
 				}
 
+				if (revenuePos!=0)
+				{
 				Row rowSubTotal = sheet.createRow(currentRowNumber);
 				Cell cell18 = rowSubTotal.createCell(revenuePos - 1);
 				cell18.setCellValue("Total Revenue (€)");
@@ -212,6 +257,7 @@ public class XlsxExpoter {
 
 				Cell cell19 = rowSubTotal.createCell(revenuePos);
 				cell19.setCellValue(grandTotal);
+				}
 
 				currentRowNumber++;
 				Row rowFooter = sheet.createRow(currentRowNumber);

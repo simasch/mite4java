@@ -36,8 +36,8 @@ public class XlsxExpoter {
 
 	public void exportTimeEntryData(String subDomain, String apiKey, String selectedFields, ReportFilter repFltr, String reportHeader, String reportFooter, OutputStream out) {
 
-		String TARGET_HTTPS_SERVER = subDomain + ".mite.yo.lk";
-		String TARGET_URL = "https://" + subDomain + ".mite.yo.lk/time_entries.xml?api_key=" + apiKey;
+		String TARGET_HTTPS_SERVER = subDomain + ".mite.de";
+		String TARGET_URL = "https://" + subDomain + ".mite.de/time_entries.xml?api_key=" + apiKey;
 
 		Getconnection gcon = new Getconnection(TARGET_HTTPS_SERVER, "true");
 
@@ -152,16 +152,16 @@ public class XlsxExpoter {
 
 					}
 
-			
+
 					ArrayList<TimeEntry> groupTimeEntryList = new ArrayList<TimeEntry>();
-					
+
 						for (int j = 0; j < filteredRowCount; j++) {
 
 							if (timeEntryList.get(j).getCustomerName()==null)
 								groupTimeEntryList.add(timeEntryList.get(j));
 
 						}
-						
+
 					blockHeader = "Customer : ";
 					if (groupTimeEntryList.size() > 0)
 						currentRowNumber = addBlockDataInSheet(sheet, currentRowNumber, tokens, groupTimeEntryList, blockHeader, blockFooter);
@@ -202,7 +202,7 @@ public class XlsxExpoter {
 					if (groupTimeEntryList.size() > 0)
 						currentRowNumber = addBlockDataInSheet(sheet, currentRowNumber, tokens, groupTimeEntryList, blockHeader, blockFooter);
 
-				
+
 
 				} else if (repFltr.getProjectGr() != null) {
 

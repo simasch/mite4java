@@ -89,8 +89,8 @@ public class MiteSystem {
 
 		ProjectData projectListData = null;
 
-		String TARGET_HTTPS_SERVER = subDomain + ".mite.yo.lk";
-		String TARGET_URL = "https://" + subDomain + ".mite.yo.lk/projects.xml?api_key=" + apiKey;
+		String TARGET_HTTPS_SERVER = subDomain + ".mite.de";
+		String TARGET_URL = "https://" + subDomain + ".mite.de/projects.xml?api_key=" + apiKey;
 
 		Getconnection gcon = new Getconnection(TARGET_HTTPS_SERVER, "true");
 
@@ -125,8 +125,8 @@ public class MiteSystem {
 
 		ServiceData serviceListData = null;
 
-		String TARGET_HTTPS_SERVER = subDomain + ".mite.yo.lk";
-		String TARGET_URL = "https://" + subDomain + ".mite.yo.lk/services.xml?api_key=" + apiKey;
+		String TARGET_HTTPS_SERVER = subDomain + ".mite.de";
+		String TARGET_URL = "https://" + subDomain + ".mite.de/services.xml?api_key=" + apiKey;
 
 		Getconnection gcon = new Getconnection(TARGET_HTTPS_SERVER, "true");
 
@@ -161,8 +161,8 @@ public class MiteSystem {
 
 		CustomerData customerListData = null;
 
-		String TARGET_HTTPS_SERVER = subDomain + ".mite.yo.lk";
-		String TARGET_URL = "https://" + subDomain + ".mite.yo.lk/customers.xml?api_key=" + apiKey;
+		String TARGET_HTTPS_SERVER = subDomain + ".mite.de";
+		String TARGET_URL = "https://" + subDomain + ".mite.de/customers.xml?api_key=" + apiKey;
 
 		Getconnection gcon = new Getconnection(TARGET_HTTPS_SERVER, "true");
 
@@ -196,8 +196,8 @@ public class MiteSystem {
 	public String getProjectXmlResponse(String subDomain, String apiKey) {
 		String serverResp = "";
 
-		String TARGET_HTTPS_SERVER = subDomain + ".mite.yo.lk";
-		String TARGET_URL = "https://" + subDomain + ".mite.yo.lk/projects.xml?api_key=" + apiKey;
+		String TARGET_HTTPS_SERVER = subDomain + ".mite.de";
+		String TARGET_URL = "https://" + subDomain + ".mite.de/projects.xml?api_key=" + apiKey;
 
 		Getconnection gcon = new Getconnection(TARGET_HTTPS_SERVER, "true");
 
@@ -228,8 +228,8 @@ public class MiteSystem {
 	public String getServiceXmlResponse(String subDomain, String apiKey) {
 		String serverResp = "";
 
-		String TARGET_HTTPS_SERVER = subDomain + ".mite.yo.lk";
-		String TARGET_URL = "https://" + subDomain + ".mite.yo.lk/services.xml?api_key=" + apiKey;
+		String TARGET_HTTPS_SERVER = subDomain + ".mite.de";
+		String TARGET_URL = "https://" + subDomain + ".mite.de/services.xml?api_key=" + apiKey;
 
 		Getconnection gcon = new Getconnection(TARGET_HTTPS_SERVER, "true");
 
@@ -261,8 +261,8 @@ public class MiteSystem {
 	public String getCustomerXmlResponse(String subDomain, String apiKey) {
 		String serverResp = "";
 
-		String TARGET_HTTPS_SERVER = subDomain + ".mite.yo.lk";
-		String TARGET_URL = "https://" + subDomain + ".mite.yo.lk/customers.xml?api_key=" + apiKey;
+		String TARGET_HTTPS_SERVER = subDomain + ".mite.de";
+		String TARGET_URL = "https://" + subDomain + ".mite.de/customers.xml?api_key=" + apiKey;
 
 		Getconnection gcon = new Getconnection(TARGET_HTTPS_SERVER, "true");
 
@@ -294,8 +294,8 @@ public class MiteSystem {
 	public String postProjectXmlResponse(String subDomain, String apiKey, Project proj) {
 		String serverResp = "";
 
-		String TARGET_HTTPS_SERVER = subDomain + ".mite.yo.lk";
-		String TARGET_URL = "https://" + subDomain + ".mite.yo.lk/projects.xml?api_key=" + apiKey;
+		String TARGET_HTTPS_SERVER = subDomain + ".mite.de";
+		String TARGET_URL = "https://" + subDomain + ".mite.de/projects.xml?api_key=" + apiKey;
 
 		Getconnection gcon = new Getconnection(TARGET_HTTPS_SERVER, "true");
 
@@ -334,8 +334,8 @@ public class MiteSystem {
 	public String postServiceXmlResponse(String subDomain, String apiKey, Service serv) {
 		String serverResp = "";
 
-		String TARGET_HTTPS_SERVER = subDomain + ".mite.yo.lk";
-		String TARGET_URL = "https://" + subDomain + ".mite.yo.lk/services.xml?api_key=" + apiKey;
+		String TARGET_HTTPS_SERVER = subDomain + ".mite.de";
+		String TARGET_URL = "https://" + subDomain + ".mite.de/services.xml?api_key=" + apiKey;
 
 		Getconnection gcon = new Getconnection(TARGET_HTTPS_SERVER, "true");
 
@@ -374,8 +374,8 @@ public class MiteSystem {
 	public String postCustomerXmlResponse(String subDomain, String apiKey, Customer cust) {
 		String serverResp = "";
 
-		String TARGET_HTTPS_SERVER = subDomain + ".mite.yo.lk";
-		String TARGET_URL = "https://" + subDomain + ".mite.yo.lk/customers.xml?api_key=" + apiKey;
+		String TARGET_HTTPS_SERVER = subDomain + ".mite.de";
+		String TARGET_URL = "https://" + subDomain + ".mite.de/customers.xml?api_key=" + apiKey;
 
 		Getconnection gcon = new Getconnection(TARGET_HTTPS_SERVER, "true");
 
